@@ -872,6 +872,12 @@ func (server *Server) initMux(mux *http.ServeMux) {
 			}
 			w.Header().Set("Content-Type", string(mimeType))
 			w.Header().Set("Content-Disposition", "attachment; filename="+strconv.Quote(path.Base(filePath)))
+			if r.Header.Get("getContentFeatures.dlna.org") != "" {
+				w.Header().Set(dlna.ContentFeaturesDomain, dlna.ContentFeatures{
+					SupportTimeSeek: true,
+					SupportRange:    true,
+				}.String())
+			}
 			http.ServeFile(w, r, filePath)
 			return
 		}
