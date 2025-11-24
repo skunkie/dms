@@ -366,7 +366,7 @@ func (me *contentDirectoryService) objectFromID(id string) (o object, err error)
 		return
 	}
 	if o.Path == "0" {
-		o.Path = "."
+		o.Path = "./"
 	}
 	o.Path = path.Clean(o.Path)
 	o.RootObjectPath = me.RootObjectPath
@@ -596,7 +596,7 @@ func (o object) ID() string {
 }
 
 func (o *object) IsRoot() bool {
-	return o.Path == "."
+	return o.Path == "./"
 }
 
 // Returns the object's parent ObjectID. Fortunately it can be deduced from the

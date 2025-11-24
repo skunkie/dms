@@ -13,11 +13,11 @@ import (
 
 const hiddenAttributes = windows.FILE_ATTRIBUTE_HIDDEN | windows.FILE_ATTRIBUTE_SYSTEM
 
-func isHiddenPath(fsys *fs.FS, path string) (hidden bool, err error) {
+func isHiddenPath(fsys fs.FS, path string) (hidden bool, err error) {
 	if path == "." {
 		return false, nil
 	}
-	f, err := (*fsys).Open(path)
+	f, err := fsys.Open(path)
 	if err != nil {
 		return false, err
 	}

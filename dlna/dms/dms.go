@@ -645,7 +645,7 @@ func (me *Server) serviceControlHandler(w http.ResponseWriter, r *http.Request) 
 }
 
 func safeFilePath(root, given string) string {
-	return path.Join(root, path.Clean(given))
+	return filepath.Join(root, filepath.Clean(given))
 }
 
 func (s *Server) filePath(_path string) string {
@@ -956,7 +956,7 @@ func (srv *Server) Init() (err error) {
 		fsys := os.DirFS(srv.RootObjectPath)
 		srv.FS = fsys
 	}
-	srv.RootObjectPath = "."
+	srv.RootObjectPath = "./"
 	srv.eventingLogger = srv.Logger.WithNames("eventing")
 	srv.eventingLogger.Levelf(log.Debug, "hello %v", "world")
 	if err = srv.initServices(); err != nil {
