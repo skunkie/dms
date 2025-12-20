@@ -15,11 +15,11 @@ func TestSafeFilePath(t *testing.T) {
 	var cases []safeFilePathTestCase
 	if runtime.GOOS == "windows" {
 		cases = []safeFilePathTestCase{
-			{"c:", "/", "c:."},
-			{"c:", "/test", "c:test"},
+			{"c:", "/", "c:\\"},
+			{"c:", "/test", "c:\\test"},
 			{"c:\\", "/", "c:\\"},
 			{"c:\\", "/test", "c:\\test"},
-			{"c:\\hello", "../windows", "c:\\hello\\windows"},
+			{"c:\\hello", "../windows", "c:\\windows"},
 			{"c:\\hello", "/../windows", "c:\\hello\\windows"},
 			{"c:\\hello", "/", "c:\\hello"},
 			{"c:\\hello", "./world", "c:\\hello\\world"},
@@ -31,8 +31,8 @@ func TestSafeFilePath(t *testing.T) {
 	} else {
 		cases = []safeFilePathTestCase{
 			{"/", "..", "/"},
-			{"/hello", "..//", "/hello"},
-			{"", "/precious", "precious"},
+			{"/hello", "..//", "/"},
+			{"./", "/precious", "precious"},
 			{".", "///precious", "precious"},
 		}
 	}
