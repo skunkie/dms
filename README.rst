@@ -151,3 +151,8 @@ An example::
     }
 
 By default, dynamic content is treated as video. It is possible to specify a "Type" parameter with value "audio" or "video" to explicitly set this.
+
+Crossing Network Boundaries
+===========================
+
+DLNA/UPnP relies on multicast traffic, which typically doesn't cross network boundaries (e.g., between VLANs or subnets). If you need to access your DMS server from a different network segment, you can use `dlna-proxy <https://github.com/fenio/dlna-proxy>`_ to bridge the gap.
